@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Values 1 to 10</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Print Values from 1 to 10</h1>
+        <button onclick="printValues()">Print Values</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function printValues() {
+            let i = 1;
+            let result = "";
+            while (i <= 10) {
+                result += i + "<br>";
+                i++;
+            }
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+</html>

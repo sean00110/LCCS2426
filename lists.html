@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter and Print Numbers</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter and Print Numbers</h1>
+        <label for="numberInput">Enter a number:</label>
+        <input type="number" id="numberInput" name="numberInput" required>
+        <button onclick="addNumber()">Enter</button>
+        <button onclick="printNumbers()">Print</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        let numbers = [];
+
+        function addNumber() {
+            const numberInput = document.getElementById('numberInput');
+            const number = parseFloat(numberInput.value);
+            if (!isNaN(number)) {
+                numbers.push(number);
+                numberInput.value = ''; // Clear the input field
+            } else {
+                alert("Please enter a valid number.");
+            }
+        }
+
+        function printNumbers() {
+            let result = "";
+            for (let i = 0; i < numbers.length; i++) {
+                result += numbers[i] + "<br>";
+            }
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+</html>

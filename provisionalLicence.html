@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Licence Eligibility</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Check Your Eligibility for a Driving Licence</h1>
+        <label for="age">Enter your age:</label>
+        <input type="number" id="age" name="age" required>
+        <br><br>
+        <label for="provisional">Do you have a provisional licence?</label>
+        <select id="provisional" name="provisional" required>
+            <option value="">Select an option</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <br><br>
+        <button onclick="checkEligibility()">Check Eligibility</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function checkEligibility() {
+            const age = parseInt(document.getElementById('age').value);
+            const hasProvisional = document.getElementById('provisional').value === 'true';
+            const resultDiv = document.getElementById('result');
+
+            const isEligible = age >= 17 && hasProvisional;
+            const isTooYoung = age < 17;
+            const needsProvisional = age >= 17 && !hasProvisional;
+
+            if (isEligible) {
+                resultDiv.innerHTML = "You are entitled to apply for a driving licence.";
+            } else if (isTooYoung) {
+                resultDiv.innerHTML = "You are too young to apply for a driving licence.";
+            } else if (needsProvisional) {
+                resultDiv.innerHTML = "You need a provisional licence to apply for a driving licence.";
+            } else {
+                resultDiv.innerHTML = "Please enter valid information.";
+            }
+        }
+    </script>
+</body>
+</html>

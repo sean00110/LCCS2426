@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Visualization</h1>
+        <label for="temperatureInput">Enter a temperature:</label>
+        <input type="number" id="temperatureInput" name="temperatureInput" required>
+        <button onclick="addTemperature()">Enter</button>
+        <button onclick="updateChart()">Print</button>
+        <div class="chart-container">
+            <canvas id="temperatureChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let temperatures = [];
+        const ctx = document.getElementById('temperatureChart').getContext('2d');
+        let temperatureChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Temperature Values',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function addTemperature() {
+            const temperatureInput = document.getElementById('temperatureInput');
+            const temperature = parseFloat(temperatureInput.value);
+            if (!isNaN(temperature)) {
+                temperatures.push(temperature);
+                temperatureInput.value = ''; // Clear the input field
+            } else {
+                alert("Please enter a valid temperature.");
+            }
+        }
+
+        function updateChart() {
+            temperatureChart.data.labels = temperatures.map((_, index) => `Temp ${index + 1}`);
+            temperatureChart.data.datasets[0].data = temperatures;
+            temperatureChart.update();
+        }
+    </script>
+</body>
+</html>

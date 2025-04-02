@@ -1,0 +1,57 @@
+#A fishing tackle company has come to you to create there database.
+#Write a program in python that stores rodName, rodMaterial, rodDateOfMan, rodCost.
+#Create some dummy data and use an if statement or while statement to allow
+#the user add new records.
+import csv
+
+def create():
+    file = open("patients.csv", "a", newline="")
+    inFName = input("Please enter first name:")
+    inlName = input("Please enter last name:")
+    inPNum = input("Please enter phone number:")
+    inDBirth = input("Please enter date of birth:")
+    inAge = input("Please enter age:")
+    
+    newRecord = [inFName, inlName, inPNum, inDBirth, inAge]
+    db.writerow(newRecord)
+    file.close()
+
+header = ["firstName", "lastName", "phoneNum", "dob", "age"]
+file = open("patients.csv", "a", newline="")
+
+#The connection to our database.
+db = csv.writer(file)
+#This line writes the headers to our database.
+db.writerow(header)
+
+#Add a record
+record1= ["Joan", "Byrne", "0871234567", "2/2/75", "50"]
+record2= ["Dave", "Byrne", "0877654321", "2/2/78", "47"]
+record3= ["Jim", "Byrne", "0874567890", "2/2/79", "46"]
+db.writerow(record1)
+db.writerow(record2)
+db.writerow(record3)
+
+#Close the file
+file.close()
+
+#Reading records from a database.
+file = open("patients.csv", "r")
+#Turned the database into a list
+records = list(csv.reader(file))
+file.close()
+
+#Display one record from the database (Jim Byrne).
+#for record in records:
+print(records[3])
+    
+#Display the age values in the database.
+for record in records[1:]:
+    print(record[4])
+    
+#Display the age>47 values in the database.
+for record in records[1:]:
+    if(int(record[4])>47):
+        print(record)
+        
+

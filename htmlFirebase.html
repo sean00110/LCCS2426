@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Realtime DB</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+ 
+<body>
+<h1>Add records to Firebase</h1>
+<br>
+ 
+   <div class="topnav">
+	<a class="active" href="#home">Home</a>
+	<a href="#news">News</a>
+	<a href="#contact">Contact</a>
+	<a href="#about">About</a>
+   </div> 
+   
+<script src="script.js"></script>
+ 
+<button onclick="insertRecord()">Insert Record</button>
+
+</body>
+ 
+</html>
+ 
+    
+
+
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+
+<script>
+       var config = {
+  apiKey: "AIzaSyBjFqxc9KyTj06P6R1Byu17KEIQL1Lcfcc",
+  authDomain: "sports-shop-5c5a9.firebaseapp.com",
+  databaseURL: "https://sports-shop-5c5a9-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "sports-shop-5c5a9",
+  storageBucket: "sports-shop-5c5a9.firebasestorage.app",
+  messagingSenderId: "161588335694",
+  appId: "1:161588335694:web:1dcf79cc322784ece11f1f",
+  measurementId: "G-70KTCTB1WW"
+       }
+        firebase.initializeApp(config);
+</script>
+ 
+ 
+<script>
+  function insertRecord(){
+    var myDB = firebase.database().ref();
+    var addRecord = myDB.child("myContacts").push();
+    record = {
+      "firstName" : "Dr. John",
+      "lastName"  : "Maker",
+      "phoneNum"  : "01-4580345766",
+      "dob"       : "01/03/76",
+      "age"       : "28"
+    };
+    addRecord.set(record);
+  }
+</script>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>replit</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+ 
+<body>
+<h1>Add new Employees to the Shop</h1>
+<br />
+ 
+<div class="topnav">
+<a class="active" href="#home">Home</a>
+<a href="#news">Employees</a>
+<a href="#contact">Managers</a>
+<a href="#about">Locations</a>
+</div> 
+<script src="script.js"></script>
+ 
+<br />
+<br />
+<input type="text" placeholder="First Name..." id="firstNameIn">
+<input type="text" placeholder="Last Name..." id="lastNameIn">
+<input type="text" placeholder="Age..." id="ageIn">
+<input type="text" placeholder="DOB..." id="dateIn">
+<input type="text" placeholder="Phone..." id="phoneIn">
+ 
+<button onclick="addData()">Insert Record</button>
+
+</body>
+ 
+</html>
+ 
+    
+
+
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+
+<script>
+       var config = {
+  apiKey: "AIzaSyBjFqxc9KyTj06P6R1Byu17KEIQL1Lcfcc",
+  authDomain: "sports-shop-5c5a9.firebaseapp.com",
+  databaseURL: "https://sports-shop-5c5a9-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "sports-shop-5c5a9",
+  storageBucket: "sports-shop-5c5a9.firebasestorage.app",
+  messagingSenderId: "161588335694",
+  appId: "1:161588335694:web:1dcf79cc322784ece11f1f",
+  measurementId: "G-70KTCTB1WW"
+       }
+        firebase.initializeApp(config);
+</script>
+ 
+ 
+<script>
+function addData(){
+    var fN = document.getElementById("firstNameIn").value;
+    var lN = document.getElementById("lastNameIn").value;
+    var age = document.getElementById("ageIn").value;
+	var dateOBirth = document.getElementById("dateIn").value;
+	var phoneNumber = document.getElementById("phoneIn").value;
+  
+    var myDB = firebase.database().ref();
+    var addRecord = myDB.child("Employees").push();
+
+    record = 
+      {
+        "firstName" : fN,
+        "lastName"  : lN,
+        "age"       : age,
+		"dob"		: dateOBirth,
+		"phoneNum"	: phoneNumber
+      }
+    addRecord.set(record);
+}
+</script>
